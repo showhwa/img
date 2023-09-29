@@ -1,0 +1,17 @@
+version: '3'
+services:
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: random-image
+    restart: always
+    container_name: random-image
+    user: "1000:1000"
+    ports:
+      - "8080:8088"
+    environment:
+      - 'FILE_URL='
+      - 'USER='
+      - 'REPO='
+      - 'FILE_PATH='
