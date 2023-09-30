@@ -84,8 +84,7 @@ func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", getRandomImageURLHandler)
-	fmt.Printf("FILE_URL = %s, USER = %s, REPO = %s, FILE_PATH = %s, downloadTime = %d", textFileURL, USER, REPO, FILE_PATH, downloadTime)
-
+	fmt.Printf("FILE_URL = %s, USER = %s, REPO = %s, FILE_PATH = %s, downloadTime = %d \n", textFileURL, USER, REPO, FILE_PATH, downloadTime)
 	fmt.Println("Server started at :8088")
 	http.ListenAndServe(":8088", router)
 }
