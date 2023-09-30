@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -65,11 +66,17 @@ func main() {
 	REPO := os.Getenv("REPO")
 	FILE_PATH := os.Getenv("FILE_PATH")
 
+	downloadTimeStr := os.Getenv("downloadTime")
+	downloadTime, err := strconv.Atoi(downloadTimeStr)
+	if err != nil {
+		downloadTime = 5
+	}
+
 	baseImageUrl = fmt.Sprintf("https://cdn.jsdelivr.net/gh/%s/%s/%s", USER, REPO, FILE_PATH)
 
-	go startDownloadTimer(5 * time.Hour)
+	go startDownloadTimer(time.Duration(downloadTime) * time.Hour)
 
-	err := downloadTextFile(textFileURL)
+	err = downloadTextFile(textFileURL)
 	if err != nil {
 		fmt.Println("Error downloading the text file:", err)
 		return
@@ -77,6 +84,7 @@ func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", getRandomImageURLHandler)
+	fmt.Printf("FILE_URL = %s, USER = %s, REPO = %s, FILE_PATH = %s, downloadTime = %d", textFileURL, USER, REPO, FILE_PATH, downloadTime)
 
 	fmt.Println("Server started at :8088")
 	http.ListenAndServe(":8088", router)
