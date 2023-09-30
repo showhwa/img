@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN export CGO_ENABLED=0 && go build -o main main.go
+RUN export CGO_ENABLED=0 && go build -ldflags="-s -w" -o main main.go
 
 FROM alpine:latest
 
