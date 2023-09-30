@@ -1,18 +1,15 @@
 version: '3'
 services:
-  go-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: random-image
-    restart: always
+  random-image:
+    image: ghcr.io/showhwa/random-image:code
     container_name: random-image
+    restart: always
     user: "1000:1000"
     ports:
-      - "8080:8088"
+      - "8088:8088"
     environment:
-      - 'FILE_URL='
-      - 'USER='
-      - 'REPO='
-      - 'FILE_PATH='
-      - 'downloadTime='
+      - 'FILE_URL='  # 每行一个图的名称的URL
+      - 'USER='  # github的USER
+      - 'REPO='  # github的仓库
+      - 'FILE_PATH='  # 仓库的路径
+      - 'downloadTime='  # 每隔多久更新图片的URL，单位是小时，默认是5小时
