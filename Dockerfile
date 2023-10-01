@@ -4,14 +4,14 @@ WORKDIR /app
 
 COPY . .
 
-RUN export CGO_ENABLED=0 && go build -ldflags="-s -w" -o main main.go
+RUN export CGO_ENABLED=0 && go build -ldflags="-s -w" -o random_image random_image.go
 
 FROM alpine:latest
 
 WORKDIR /app
 
-COPY --from=build /app/main .
+COPY --from=build /app/random_image .
 
 EXPOSE 8088
 
-CMD ["./main"]
+CMD ["./random_image"]
