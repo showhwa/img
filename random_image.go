@@ -58,7 +58,6 @@ func getRandomImageURL() string {
 
 func getRandomImageURLHandler(w http.ResponseWriter, r *http.Request) {
 	imageURL := getRandomImageURL()
-	log.Infof("Accessed URL: %s", r.URL.Path)
 	http.Redirect(w, r, imageURL, http.StatusFound)
 }
 
