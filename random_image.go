@@ -52,7 +52,6 @@ func downloadTextFile(url string) error {
 }
 
 func getRandomImageURL() string {
-	rand.Seed(time.Now().UnixNano())
 	randomImageName := imageNames[rand.Intn(len(imageNames))]
 	return fmt.Sprintf("%s/%s", baseImageUrl, randomImageName)
 }
