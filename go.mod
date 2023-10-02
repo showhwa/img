@@ -1,4 +1,4 @@
-module random_image.go
+module random_image
 
 go 1.20
 
