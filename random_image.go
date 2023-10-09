@@ -67,6 +67,7 @@ func startDownloadTimer(interval time.Duration) {
 		if err := downloadTextFile(textFileURL); err != nil {
 			log.Errorf("Error downloading the text file: %v", err)
 		} else {
+			log.Info("Image number is ", len(imageNames))
 			log.Info("Downloaded the text file at", time.Now())
 		}
 	}
