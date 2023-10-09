@@ -104,5 +104,6 @@ func main() {
 	router := setupRoutes()
 	log.Infof("FILE_URL = %s, USER = %s, REPO = %s, FILE_PATH = %s, downloadTime = %d", textFileURL, USER, REPO, FILE_PATH, downloadTime)
 	log.Infof("Server started at :%d", serverPort)
+	log.Info("Image number is ", len(imageNames))
 	http.ListenAndServe(fmt.Sprintf(":%d", serverPort), router)
 }
